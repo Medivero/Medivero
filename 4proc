@@ -1,0 +1,366 @@
+#include <iostream>
+#include <string>
+#include <fstream>
+#include <algorithm>
+using namespace std;
+
+int main()
+{
+    int i;
+    int sum = 0;
+    int number;
+    ofstream num("Numbers.txt");
+    for (i = 0; i < 10; i++) {
+        cout << i << ".";
+        cin >> number;
+        num << number << endl;
+    }
+    num.close();
+    ifstream num1("Numbers.txt");
+    int j = 0;
+    int mum;
+    while (num1 >> mum) {
+        sum += mum;
+    }
+    num1.close();
+    cout << sum;
+}
+2.
+#include <iostream>
+using namespace std;
+char che(float a)
+{
+    if (a > 0) {
+        return '+';
+    }
+    if (a == 0) {
+        return '0';
+    }
+    if (a < 0) {
+        return '-';
+    }
+}
+int main()
+{
+    setlocale(0, "");
+    float a;
+    cout << "Введите число: ";
+    cin >> a;
+    cout << "Знак перед символом: " << che(a);
+    
+}
+3.
+#include <iostream>
+#include <math.h>
+using namespace std;
+int che(float a, float b, float R, const float pi) 
+{
+	int g;
+	setlocale(0, "");
+	cout << "Площадь какой фигуры вы хотите узнать? 1.Прямоугольник 2.Треугольник 3.Круг" << endl;
+	cin >> g;
+	switch (g) 
+	{
+	case 1:
+		return  (a * b);
+		break;
+	case 2:
+		return ((a * b) / 2);
+		break;
+	case 3:
+		return (pi * R * R);
+		break;
+	}
+}
+int main()
+{
+	const float pi = 3.14;
+	setlocale(0, "");
+	float a, b, R;
+	cout << "Введите значение a:"; cin >> a; cout << "Введите значение b:"; cin >> b; cout << "Введите значение R:"; cin >> R;
+	cout <<"Результат: " << che(a, b, R, pi);
+}
+4.
+#include <iostream>
+#include <math.h>
+using namespace std;
+int main()
+{
+	int i,j,l;
+	for (i = 0; i < 4; i++) 
+	{
+		for (j = 0; j < 12; j++) 
+		{
+			cout << '*';
+			
+		}
+		for (l = 0; l < 18; l++) {
+			cout << '_';
+		}
+		cout << endl;
+	}
+	for (i = 0; i < 9; i++) {
+		for (j = 0; j < 30; j++) {
+			cout << '_';
+		}
+		cout << endl;
+	}
+}
+5.
+#include <iostream>
+#include <cmath>
+using namespace std;
+float bb(float x) {
+	return sin(x)*1;
+}
+int main() 
+{
+	double const pi = 3.14;
+	float niz = -2*pi;
+	float verh = 2*pi;
+	float g = 0.1;
+	float y = 1;
+	float shag = pi / 30;
+	float x;
+	while (y >= -1) {
+		for (x = niz; x <= verh; x = x+shag) {
+			if (abs(bb(x) - y) > g) {
+				if (abs(y) < g) {
+					cout << "-"; 
+				}
+				else {
+					cout << " ";}
+			}
+			if (abs(bb(x)-y) < g) {
+				cout << "/";
+			}
+		} 
+		cout << endl;
+		y = y - 0.2;
+	}
+}
+6.
+#include <iostream>
+#include <cmath>
+#include <string>
+#include <stdlib.h>
+using namespace std;
+int flag = 0;
+int flag2 = 0;
+int che(char c)
+{
+	switch (c)
+	{
+	case 'I':
+		return 1;
+		break;
+	case 'V':
+		return 5;
+		break;
+	case 'X':
+		return 10;
+		break;
+	case 'L':
+		return 50;
+		break;
+	case 'C':
+		return 100;
+		break;
+	case 'D':
+		return 500;
+		break;
+	case 'M':
+		return 1000;
+		break;
+	case '0':
+		return system("cls");
+		break;
+	}
+	return 0;
+}
+int main()
+{
+	setlocale(0, "");
+	cout << "Если хотите очистить консоль, то напишите 0." << endl;
+	while (flag2 == 0) {
+		int d = 0;
+		int b;
+		char c;
+		int i, j;
+		int sum = 0;
+		string x;
+		cout << "Vvedite rimskie cifri: ";
+		cin >> x;
+		j = x.length();
+		for (i = 0; i < j; i++) {
+			c = x[i];
+			if (che(c) >= che(x[i + 1])) {
+				sum = sum + che(c);
+				if (i > 0) {
+					if (che(c) == che(x[i - 1])) {
+						flag += 1;
+						if (flag >= 4) {
+							cout << "Error. Одна и та же римская цифра не может повторяться больше 4-х раз. ";
+							exit(0);
+						}
+					}
+				if ((j > 3) and (j-i>=3)) {
+					if (che(c)+che(x[i+1]) == che(x[i+2])+che(x[i+3])) {
+						cout << "Error.";
+						exit(0);
+						}
+					}
+					else flag = 0;
+				}
+			}
+			if (che(c) < che(x[i + 1])) {
+				sum = sum - che(c);
+				if (che(c) <= che(x[i + 1]) / 2) {
+					cout << "Error.";
+					exit(0);
+				}
+				if (i > 0) {
+					if ((che(c) == che(x[i - 1])) and (che(c) < che(x[i + 1]))) {
+						cout << "Error. Одна и та же римская цифра не может стоять больше 1 раза перед цифрой больше.";
+						exit(0);
+					}
+				}
+			}
+		}
+		cout << "Результат: " << sum << endl;
+		cout << "-----------------" << endl;
+	}
+}
+7.
+#include <iostream>
+using namespace std;
+int random(int m, int i, int c)
+{
+    static int si = 0;
+    int r_nomer = (m * si + i) % c;
+    si = r_nomer; 
+    return r_nomer;
+}
+
+int main()
+{
+    setlocale(0, "");
+    int m = rand();
+    int i = rand();
+    int c = rand();
+    for (int j = 0; j < 10; j++) {
+        int r_nomer = random(m, i, c);
+        cout << r_nomer;
+    }
+    cout << endl;
+
+    for (int j = 0; j < 10; j++) {
+        int r_nomer = random(m, i, c);
+        cout << r_nomer;
+    }
+
+    return 0;
+}
+8.
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    double arr1[3][4] = { {5, 2, 0, 10}, {3, 5, 2, 5}, {20, 0, 0, 0} };
+    double arr2[4][2] = { {1.2, 0.5}, {2.8, 0.4 } , {5, 1}, {2, 1.5} };
+    double res[3][2];
+    cout << "A*B" << endl; 
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 2; j++) {
+            double sm = 0;
+            for (int k = 0; k < 4; k++) {
+                sm += arr1[i][k] * arr2[k][j];
+            }
+            res[i][j] = sm;
+        }
+    }
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 2; j++) {
+            cout << res[i][j] << " ";
+        }
+        cout << endl;
+    }
+    int mxk = 0, mnk = 0, mxs = 0, mns = 0;
+    double sum = 0, komis = 0;
+    for (int i = 0; i < 3; i++) {
+        if (res[i][0] > res[mxs][0]) {
+            mxs = i;
+        }
+        if (res[i][1] > res[mxk][1]){
+            mxk = i;
+        }
+        if (res[i][2] > res[mns][2]) {
+            mns = i;
+        }
+        if (res[i][1] > res[mnk][1]) {
+            mnk = i;
+        }
+        sum += res[i][0];
+        komis += res[i][1];
+    }
+    cout << "Vendor ++:" << mxs + 1 << " Vendor --:" << mns + 1 << endl;
+    cout << "Komission Vendor++:" << mxk + 1 << " Komission Vendor--:" << mnk + 1 << endl;
+    cout << "Vsego deneg:" << sum << endl;
+    cout << "Komission:" << komis << endl;
+    cout << "Vsego:" << sum + komis;
+    return 0;
+}
+9.
+#include <iostream>
+using namespace std;
+int function(int number, int sys) {
+
+    int num1 = number;
+    int dd = 0;
+    int base = 1;
+    int temp = num1;
+    while (temp) {
+        int ld = temp % 10;
+        temp = temp / 10;
+        dd += ld * base;
+        base = base * sys;
+    }
+    return dd;
+
+}
+int function2(int number, int sys, int sys2)
+{
+    int n1 = number;
+    int s1 = sys;
+    int d2 = function(n1,s1);
+    int bn[32];
+    int i = 0;
+    while (d2 > 0) {
+        bn[i] = d2 % sys2;
+        number = d2 / sys2;
+        i++;
+    }
+    for (int j = i - 1; j >= 0; j--) {
+        return bn[j];
+    }
+}
+
+int main()
+{
+    setlocale(0, "");
+    double number;
+    int sys,sys2;
+    cout << "Введите число:";
+    cin >> number;
+    cout << "Введите систему счисления числа:";
+    cin >> sys;
+    cout << "Введите систему счисления в которую хотите перевести:";
+    cin >> sys2;
+    if (sys2 == 10) {
+        function(number, sys);
+    }
+    else {
+        function2(number, sys, sys2);
+    }
+}
