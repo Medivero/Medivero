@@ -141,3 +141,24 @@ int main(){
     }
     cout << "Result: "<< kolvo;
 }
+4.2
+#include <iostream> //Определить, входит ли цифра 3 в запись числа n^2
+#include <cmath>
+#include <string>
+using namespace std;
+
+int main() {
+    setlocale(0,"");
+    int number;
+    cout << "Введите целое число: ";
+    cin >> number;
+    number = pow(number,2);
+    string number_string = to_string(number);
+    cout << "Число в квадрате: "<< number_string << endl;
+    for (int i = 0; i < number_string.size();i++){
+        if (number_string[i] == '3'){
+            cout << "Цифра 3 входит в данное число, возведенное в квадрат.";
+            exit(0);
+        }
+    }
+}
