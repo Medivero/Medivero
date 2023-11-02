@@ -1,4 +1,4 @@
-#include <iostream>
+#include <iostream> //МЕНЯЙТЕ НАЗВАНИЯ ПЕРЕМЕННЫХ
 #include <string>
 #include <fstream>
 #include <algorithm>
