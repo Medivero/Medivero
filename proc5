@@ -41,7 +41,7 @@ int main()
         }
     }
 }
-3. 
+3.1
 #include <iostream> //Поиск в тексте слова минимальной длины
 #include <string>
 #include <fstream>
@@ -77,4 +77,37 @@ int main(){
     cout << text << endl;
     cout << text1 << endl;
     cout << mn;
+}
+3.2
+#include <iostream> //Кол-во определенного символа в тексте
+#include <string>
+#include <fstream>
+
+using namespace std;
+int main(){
+    ofstream fin("Chto.txt");
+    string text1;
+    string text;
+    getline(cin,text);
+    fin << text+' ';
+    fin.close();
+    ifstream fil("Chto.txt");
+    if (!fil.is_open()){
+        cout << "Error.";
+        exit(0);
+    }
+    getline(fil,text1);
+    int t1 = text1.size();
+    int k = 0;
+    char idol;
+    cout << "Idol:";
+    cin >> idol;
+    for (int i = 0; i < t1; i++){
+        if (text1[i] == idol) {
+            k += 1;
+        }
+    }
+    cout << text << endl;
+    cout << text1 << endl;
+    cout << k;
 }
