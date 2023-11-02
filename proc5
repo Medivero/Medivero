@@ -1,7 +1,7 @@
 1.
 #include <iostream>
 using namespace std;
-int evklid(int a,int b){
+int evklid(int a,int b){ //алгоритм евклида в виде подпрограммы с рекурсией
     if (a > b){
         a = a%b;
     }
