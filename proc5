@@ -111,3 +111,33 @@ int main(){
     cout << text1 << endl;
     cout << k;
 }
+4.1
+#include <iostream> // Определение среднего арифметического роста учеников и кол-во превышающих его
+#include <vector>
+using namespace std;
+int main(){
+    setlocale(0,"");
+    cout << "/**** Анализ роста учеников ***" << endl;
+    cout << "Укажите кол-во учеников:";
+    int k,rost; 
+    int sum = 0;
+    cin >> k;
+    vector <int> arr = {};
+    cout << "Укажите рост учеников"<<endl;
+    for (int i = 0; i < k; i++){
+        cout << "-> ";
+        cin >> rost;
+        arr.push_back(rost);
+        sum += rost;
+    }
+    int kolvo = 0;
+    int sred;
+    sred= sum/k;
+    cout << "Средний рост = " << sred << endl;
+    for (int i = 0; i < k; i++){
+        if (arr[i] > sred){
+            kolvo+=1;
+        }
+    }
+    cout << "Result: "<< kolvo;
+}
