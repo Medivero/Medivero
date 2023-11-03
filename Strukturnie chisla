@@ -1,0 +1,15 @@
+1.
+#include <iostream>
+using namespace std;
+
+int main(){
+    setlocale(0,"");
+    int a,b,c,d;
+    cin >> a;
+    cin >> d;
+    for (a; a <= d; a++)
+        for (b = 1; b <= a; b++)
+            for (c = 1; c <= b; c++)
+                if (((c*c) + (b*b)) == (a*a))
+                    cout << c << "," << b << "," << a << endl;
+}
