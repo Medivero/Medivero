@@ -314,54 +314,42 @@ int main()
 }
 9.
 #include <iostream>
+#include <string>
+#include <cmath>
+#include <algorithm>
 using namespace std;
-int function(int number, int sys) {
-
-    int num1 = number;
-    int dd = 0;
-    int base = 1;
-    int temp = num1;
-    while (temp) {
-        int ld = temp % 10;
-        temp = temp / 10;
-        dd += ld * base;
-        base = base * sys;
-    }
-    return dd;
-
+int fromcrrnttoten(string num, int sys) {
+	string abc = "0123456789ABCDEF";
+	int result = 0;
+	int len = num.size();
+	for (int i = 0; i < len; i++) {
+		char c = num[i];
+		int value = abc.find(toupper(c));
+		result += value * pow(sys, len - i - 1);
+	}
+	return result;
 }
-int function2(int number, int sys, int sys2)
-{
-    int n1 = number;
-    int s1 = sys;
-    int d2 = function(n1,s1);
-    int bn[32];
-    int i = 0;
-    while (d2 > 0) {
-        bn[i] = d2 % sys2;
-        number = d2 / sys2;
-        i++;
-    }
-    for (int j = i - 1; j >= 0; j--) {
-        return bn[j];
-    }
+string fromtentoneed(int num, int sys) {
+	string abc = "0123456789ABCDEF";
+	string result;
+	while (num > 0) {
+		int rem = num % sys;
+		result = abc[rem] + result;
+		num /= sys;
+	}
+	return result;
 }
-
-int main()
-{
-    setlocale(0, "");
-    double number;
-    int sys,sys2;
-    cout << "Введите число:";
-    cin >> number;
-    cout << "Введите систему счисления числа:";
-    cin >> sys;
-    cout << "Введите систему счисления в которую хотите перевести:";
-    cin >> sys2;
-    if (sys2 == 10) {
-        function(number, sys);
-    }
-    else {
-        function2(number, sys, sys2);
-    }
+int main() {
+	setlocale(0, "");
+	string num;	
+	int sys1, sys2;
+	cout << "Введите число:";
+	cin >> num;
+	cout << "Введите изначальную систему счисления (2-16):";
+	cin >> sys1;
+	cout << "Введите систему счисления в которую хотите перевести(2-16):";
+	cin >> sys2;
+	int dec = fromcrrnttoten(num, sys1);
+	string result = fromtentoneed(dec, sys2);	
+	cout << result;
 }
