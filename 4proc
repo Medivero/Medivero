@@ -1,4 +1,4 @@
-6,7,9 не приняли. Доделаю позже
+6,7 не приняли. Доделаю позже
 #include <iostream> //МЕНЯЙТЕ НАЗВАНИЯ ПЕРЕМЕННЫХ
 #include <string>
 #include <fstream>
@@ -318,38 +318,57 @@ int main()
 #include <cmath>
 #include <algorithm>
 using namespace std;
+string abc = "0123456789ABCDEF";
 int fromcrrnttoten(string num, int sys) {
-	string abc = "0123456789ABCDEF";
-	int result = 0;
-	int len = num.size();
-	for (int i = 0; i < len; i++) {
-		char c = num[i];
-		int value = abc.find(toupper(c));
-		result += value * pow(sys, len - i - 1);
-	}
-	return result;
+
+    int result = 0;
+    int len = num.size();
+    for (int i = 0; i < len; i++) {
+        char c = num[i];
+        int value = abc.find(toupper(c));
+        result += value * pow(sys, len - i - 1);
+    }
+    return result;
 }
 string fromtentoneed(int num, int sys) {
-	string abc = "0123456789ABCDEF";
-	string result;
-	while (num > 0) {
-		int rem = num % sys;
-		result = abc[rem] + result;
-		num /= sys;
-	}
-	return result;
+    string result;
+    while (num > 0) {
+        int rem = num % sys;
+        result = abc[rem] + result;
+        num /= sys;
+    }
+    return result;
 }
 int main() {
-	setlocale(0, "");
-	string num;	
-	int sys1, sys2;
-	cout << "Введите число:";
-	cin >> num;
-	cout << "Введите изначальную систему счисления (2-16):";
-	cin >> sys1;
-	cout << "Введите систему счисления в которую хотите перевести(2-16):";
-	cin >> sys2;
-	int dec = fromcrrnttoten(num, sys1);
-	string result = fromtentoneed(dec, sys2);	
-	cout << result;
+    setlocale(0, "");
+    string num;
+    int sys1, sys2;
+    cout << "Введите число:";
+    cin >> num;
+    cout << "Введите изначальную систему счисления (2-16):";
+    cin >> sys1;
+    if (sys1 == 1){
+        cout << "Error.";
+        exit(0);
+    }
+    if (sys1 > 9){
+        for (int i = 0;i < num.size(); i++){
+            char c0 = num[i];
+            for (int j = 0;j < abc.size(); j++){
+                if (c0 == abc[j]){
+                    cout << "Error.";
+                    exit(0);
+                }
+            }
+        }
+    }
+    cout << "Введите систему счисления в которую хотите перевести(2-16):";
+    cin >> sys2;
+    if (sys2 == 1){
+        cout << "Error.";
+        exit(0);
+    }
+    int dec = fromcrrnttoten(num, sys1);
+    string result = fromtentoneed(dec, sys2);
+    cout << result;
 }
