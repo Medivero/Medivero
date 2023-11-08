@@ -28,7 +28,6 @@ int main(){
     cin >> n;
     if (n == 0 or S<=0){
         cout << "Error.";
-        main();
     }
     while (mt < m){
         r = rt;
@@ -56,5 +55,4 @@ int main() {
         }
     }
     cout << str << endl;
-    int main();
 }
