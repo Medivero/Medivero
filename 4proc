@@ -331,6 +331,7 @@ int main()
 #include <string>
 #include <cmath>
 #include <algorithm>
+#include <ctype.h>
 using namespace std;
 string abc = "0123456789ABCDEF";
 int fromcrrnttoten(string num, int sys) {
@@ -361,16 +362,16 @@ int main() {
     cin >> num;
     cout << "Введите изначальную систему счисления (2-16):";
     cin >> sys1;
-    if ((sys1 == 1) or (sys1 > 16)){
-        cout << "Error.";
+    if ((sys1 <= 1) or (sys1 > 16)){
+        cout << "Error.1";
         exit(0);
     }
     if (sys1 > 9){
         for (int i = 0;i < num.size(); i++){
             char c0 = num[i];
             for (int j = 0;j < abc.size(); j++){
-                if (c0 == abc[j]){
-                    cout << "Error.";
+                if (tolower(c0) == (abc[j])){
+                    cout << "Error.2";
                     exit(0);
                 }
             }
@@ -379,7 +380,7 @@ int main() {
     cout << "Введите систему счисления в которую хотите перевести(2-16):";
     cin >> sys2;
     if ((sys2 == 1) or (sys2 > 16)){
-        cout << "Error.";
+        cout << "Error.3";
         exit(0);
     }
     int dec = fromcrrnttoten(num, sys1);
