@@ -37,3 +37,24 @@ int main(){
     }
     cout << "p:" << r*100;
 }
+5.
+#include <iostream>
+#include <string>
+#include <algorithm>
+
+using namespace std;
+
+int main() {
+    setlocale(0, "");
+    string str;
+    getline(cin, str);
+    for (int i = 0; i < str.length() - 1; i++) {
+        for (int j = i; j < str.length() - 1; j++) {
+            if (toupper(str[i]) > toupper(str[j + 1])) {
+                swap((str[i]), (str[j + 1]));
+            }
+        }
+    }
+    cout << str.substr(count(str.begin(), str.end(), ' '), str.length()) << endl;
+    int main();
+}
