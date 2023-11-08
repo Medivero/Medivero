@@ -55,6 +55,6 @@ int main() {
             }
         }
     }
-    cout << str.substr(count(str.begin(), str.end(), ' '), str.length()) << endl;
+    cout << str << endl;
     int main();
 }
