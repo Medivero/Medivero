@@ -54,32 +54,49 @@ int main()
 #include <iostream>
 #include <math.h>
 using namespace std;
-int che(float a, float b, float R, const float pi) 
+int che(float a, float b, float R, const float pi, float c)
 {
-	int g;
-	setlocale(0, "");
-	cout << "Площадь какой фигуры вы хотите узнать? 1.Прямоугольник 2.Треугольник 3.Круг" << endl;
-	cin >> g;
-	switch (g) 
-	{
-	case 1:
-		return  (a * b);
-		break;
-	case 2:
-		return ((a * b) / 2);
-		break;
-	case 3:
-		return (pi * R * R);
-		break;
-	}
+    int g;
+    setlocale(0, "");
+    cout << "Площадь какой фигуры вы хотите узнать? 1.Прямоугольник 2.Треугольник 3.Круг" << endl;
+    cin >> g;
+    switch (g)
+    {
+        case 1:
+            if (a <= 0 || b<=0){
+                cout << "Error." << endl;
+                int main();
+            }
+            else{
+                return  (a * b);
+                break;}
+
+        case 2:
+            if (a <= 0 or b <= 0 or c <= 0 or a + b <= c or a + c <= b or b + c <= a) {
+                cout << "Error." << endl;
+                int main();
+            }
+            else{
+                float p = (a+b+c)/2;
+            return sqrt(p * (p - a) * (p - b) * (p - c) );
+            break;}
+        case 3:
+            if (R<=0){
+                cout << "Error.";
+                int main();
+            }
+            else{
+            return (pi * R * R);
+            break;}
+    }
 }
 int main()
 {
-	const float pi = 3.14;
-	setlocale(0, "");
-	float a, b, R;
-	cout << "Введите значение a:"; cin >> a; cout << "Введите значение b:"; cin >> b; cout << "Введите значение R:"; cin >> R;
-	cout <<"Результат: " << che(a, b, R, pi);
+    const float pi = 3.14;
+    setlocale(0, "");
+    float a, b, c, R;
+    cout << "Введите значение a:"; cin >> a; cout << "Введите значение b:"; cin >> b; cout << "Введите значение R:"; cin >> R;
+    cout <<"Результат: " << che(a, b, R, pi,c);
 }
 4.
 #include <iostream>
